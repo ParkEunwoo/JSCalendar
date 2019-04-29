@@ -1,0 +1,57 @@
+@import 'reset.css';
+
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
+.calendar {
+    min-width: 320px;
+}
+i {
+    padding: 0 .6em;
+    cursor: pointer;
+}
+.cal_head {
+    text-align: center;
+    padding: 4px 0;
+    font-size: 1.6rem;
+}
+
+.cal_head .month_container {
+    display: flex;
+    align-items: center;
+    margin: .4em 0;
+}
+
+.cal_head .month {
+    flex-grow: 1;
+}
+
+.cal_body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.cal_body .day {
+    text-align: center;
+    padding: .4em 0;
+    border-top: none;
+}
+
+.cal_body .date {
+    padding: 1em;
+}
+
+.cal_body div {
+    border-top: 1px solid #ecf0f1;
+    border-right: 1px solid #ecf0f1;
+}
+
+.cal_body div:nth-child(7n) {
+    color: #3498db;
+}
+
+.cal_body div:nth-child(7n+1) {
+    border-left: none;
+    color: #e74c3c;
+}
