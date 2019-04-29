@@ -1,16 +1,20 @@
 @import 'reset.css';
-
 html {
     font-family: 'Roboto', sans-serif;
+}
+body {
+    overflow: hidden;
 }
 
 .calendar {
     min-width: 320px;
 }
+
 i {
     padding: 0 .6em;
     cursor: pointer;
 }
+
 .cal_head {
     text-align: center;
     padding: 4px 0;
@@ -22,14 +26,44 @@ i {
     align-items: center;
     margin: .4em 0;
 }
-
 .cal_head .month {
     flex-grow: 1;
 }
-
+.cal_body_container {
+    display: flex;
+    overflow: hidden;
+}
 .cal_body {
+    position: absolute;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    transform-origin: top;
+}
+.cal_body.pre {
+    transform: translateX(-100%);
+}
+.cal_body.now {
+    transform: translateX(0);
+}
+.cal_body.post {
+    transform: translateX(100%);
+}
+.cal_body.prein {
+    transform: translateX(0);
+    transition: .5s transform ease;
+}
+.cal_body.preout {
+    transform: translateX(100%);
+    transition: .5s transform ease;
+}
+.cal_body.postin {
+    transform: translateX(0);
+    transition: .5s transform ease;
+}
+.cal_body.postout {
+    transform: translateX(-100%);
+    transition: .5s transform ease;
 }
 
 .cal_body .day {
