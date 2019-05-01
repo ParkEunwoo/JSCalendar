@@ -89,3 +89,15 @@ i {
     border-left: none;
     color: #e74c3c;
 }
+
+.today {
+    display: inline-block;
+    background: #2980b9;
+    color: white;
+    border-radius: 50%;
+    width: 1.2em;
+    height: 1.2em;
+    text-align: center;
+    line-height: 1.2em;
+    position: absolute;
+}

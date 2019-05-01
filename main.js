@@ -4,17 +4,29 @@ const Post = document.querySelector(".cal_body.post");
 const Year = document.querySelector('.year');
 const Month = document.querySelector('.month');
 
-const thisMonth = {
+let thisMonth = {
     year: null,
-    month: null
+    month: null,
+    date: null
 }
-
+const TODAY = {
+    year: null,
+    month: null,
+    date: null
+}
 const getToday = () => {
-    const today = new Date();
-    const month = today.getMonth();
-    const year = today.getFullYear();
+    const t_day = new Date();
+    const month = t_day.getMonth();
+    const year = t_day.getFullYear();
+    const date = t_day.getDate();
+    
+    TODAY.year = year;
+    TODAY.month = month;
+    TODAY.date = date;
+
     thisMonth.year = year;
     thisMonth.month = month;
+    thisMonth.date = date;
 }
 
 class Calendar {
@@ -27,15 +39,17 @@ class Calendar {
     }
 
     setRange(t_month, end){
-        const start_day = t_month.getDay();
+        this.start_day = t_month.getDay();
         const end_day = end.getDay();
         const end_date = end.getDate();
 
-        this.setArray(start_day, end_day, end_date);
+        this.setArray(this.start_day, end_day, end_date);
         return;
     }
 
     constructor(year, month){
+        this.year = year;
+        this.month = month;
         this.t_month = new Date(year, month);
         this.end = new Date(year, month+1, 0);
 
@@ -44,7 +58,10 @@ class Calendar {
 
     arrayCalendar() {
         return [...this.pre, 
-            ...this.t_mon.map(function(value, index){
+            ...this.t_mon.map((value, index) => {
+                if(this.year==TODAY.year && this.month==TODAY.month && index+1==TODAY.date){
+                    return `<span class="today">${index+1}</span>`;
+                }
                 return index+1;
             } ),
             ...this.post
@@ -59,7 +76,6 @@ const setMonth = (this_month) => {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     Year.innerHTML = year;
     Month.innerHTML = months[month];
-
     Pre.innerHTML = '';
     Dates.innerHTML = '';
     Post.innerHTML = '';
@@ -77,7 +93,7 @@ const setMonth = (this_month) => {
     pre.forEach(function(value){
         Pre.innerHTML += `<div class="date">${value}</div>`;
     })
-    now.forEach(function(value){
+    now.forEach(function(value, index){
         Dates.innerHTML += `<div class="date">${value}</div>`;
     })
     post.forEach(function(value){
