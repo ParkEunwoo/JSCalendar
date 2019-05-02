@@ -77,12 +77,13 @@ i {
 }
 
 .cal_body div {
-    border-top: 1px solid #ecf0f1;
+    border-bottom: 1px solid #ecf0f1;
     border-right: 1px solid #ecf0f1;
 }
 
 .cal_body div:nth-child(7n) {
     color: #3498db;
+    border-right:none;
 }
 
 .cal_body div:nth-child(7n+1) {
